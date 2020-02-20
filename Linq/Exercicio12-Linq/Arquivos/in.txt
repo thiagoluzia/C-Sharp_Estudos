@@ -1,0 +1,10 @@
+Thiago, thiago.mouraluzia@gmail.com, 900.00
+Alesandra, alesandra.mouraluzia@gmail.com, 1000.00
+Tarcyla, tarcyla.mouraluzia@gmail.com, 150.00
+Ana, Ana@gmail.com, 1550.00
+Maria, maria.mouraluzia@gmail.com, 1100.00
+Melissa, melissa.@gmail.com, 900.00
+Muriá, muria@gmail.com, 1000.00
+Bruno, bruno@gmail.com, 890.00
+Caio, caio@gmail.com, 1220.00
+Doublas, douglas@gmail.com, 1360.00
