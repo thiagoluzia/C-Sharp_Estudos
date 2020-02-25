@@ -1,4 +1,5 @@
 ﻿using System;
+using CSharpOO.SOLID.LSP.Solucao;
 using CSharpOO.SOLID.OCP.Solucao;
 using CSharpOO.SOLID.SRP.Solucao;
 
@@ -8,7 +9,7 @@ namespace CSharpOO.SOLID
     {
         private static void Main()
         {
-            #region Thiago - SRP - Solução
+            #region Thiago SRP - Solução
             Usuario user = new Usuario()
             {
                 Codigo = 15,
@@ -21,8 +22,8 @@ namespace CSharpOO.SOLID
             UsuarioService usuarioService = new UsuarioService();
             usuarioService.AdicionarUsuario(user);
             #endregion
-            
-            #region Thiago OCP Solução
+
+            #region Thiago OCP - Solução
             Conta contaCorrente = new ContaCorrente()
             {
                 Agencia = 0380,
@@ -42,11 +43,11 @@ namespace CSharpOO.SOLID
             contaPoupanca.Depositar(500m, "Alesandra Campos");
             contaPoupanca.Sacar(250m, "Alesandra Campos");
             #endregion
+            
+            #region Thiago LSP - Solução
+            CalculoAreaCorreto.Calcular();
+            #endregion
 
-
-            //CalculoArea.Calcular();
-
-            //CalculoAreaCorreto.Calcular();
             Console.ReadKey();
         }
     }
