@@ -27,7 +27,7 @@ namespace ProjetoSimples
 
             public override string ToString()
             {
-                return modelo +"  "+marca; 
+                return modelo + "  " + marca;
             }
         }
         #endregion
@@ -37,7 +37,7 @@ namespace ProjetoSimples
             //  Criação de um arquivo!
             //-----------------------------------
 
-            
+
             //2º Criar uma string com o caminho para o arquivo, contendo seu nome e sua extensão
             string caminho = "./nomeDoArquivo.son";
             /*
@@ -100,7 +100,7 @@ namespace ProjetoSimples
             //-----------------------------------
             //  Escrita de um arquivo binário
             //-----------------------------------
-            
+
             //0º Criando um novo caminho 
             string caminhoBinario = "./dado.som";
             /*
@@ -164,7 +164,7 @@ namespace ProjetoSimples
 
             serializandoLista.Serialize(escrevendoEmLista, listPessoa);
             escrevendoEmLista.Close();
-
+            
             //2º Lendo
             FileStream lendoLista = new FileStream(caminhoBinario, FileMode.Open);
             BinaryFormatter deseralizandoLista = new BinaryFormatter();
