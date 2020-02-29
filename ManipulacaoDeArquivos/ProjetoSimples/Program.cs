@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;//1º Importar  namespace para trabalhar com arquivos
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -99,10 +100,10 @@ namespace ProjetoSimples
             //-----------------------------------
             //  Escrita de um arquivo binário
             //-----------------------------------
-
+            
             //0º Criando um novo caminho 
             string caminhoBinario = "./dado.som";
-
+            /*
             //1º Criando um canal de escrita binaria (o FileStream pode ler e escrever um arquivo binario )
             FileStream canalDeEscrita = new FileStream(caminhoBinario, FileMode.OpenOrCreate);
             //Entenda o FileMode.OpenOrCreate
@@ -144,10 +145,37 @@ namespace ProjetoSimples
             Console.WriteLine(carro.ToString() );
             //5º Fechar o canal de leitura
             canalDeleitura.Close();
+            */
+
+            //--------------------------------------------------
+            //  Leitura e Escrita de arquivo binário com lista
+            //--------------------------------------------------
+
+            //1º Escrevendo
+            FileStream escrevendoEmLista = new FileStream(caminhoBinario, FileMode.OpenOrCreate);
+            BinaryFormatter serializandoLista = new BinaryFormatter();
+
+            List<Pessoa> listPessoa = new List<Pessoa>();
+
+            listPessoa.Add(new Pessoa { nome = "Thiago", idade = 30 });
+            listPessoa.Add(new Pessoa { nome = "Alesandra", idade = 29 });
+            listPessoa.Add(new Pessoa { nome = "Tarcyla", idade = 11 });
+            listPessoa.Add(new Pessoa { nome = "Emanuel", idade = 22 });
+
+            serializandoLista.Serialize(escrevendoEmLista, listPessoa);
+            escrevendoEmLista.Close();
+
+            //2º Lendo
+            FileStream lendoLista = new FileStream(caminhoBinario, FileMode.Open);
+            BinaryFormatter deseralizandoLista = new BinaryFormatter();
+            var pessoas = (List<Pessoa>)deseralizandoLista.Deserialize(lendoLista);
+
+            foreach (var pessoa in listPessoa)
+            {
+                Console.WriteLine(pessoa.ToString());
+            }
 
             Console.ReadKey();
-
-
         }
     }
 }
