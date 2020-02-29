@@ -26,7 +26,7 @@ namespace ProjetoSimples
 
             public override string ToString()
             {
-                return modelo +" e, "+marca; 
+                return modelo +"  "+marca; 
             }
         }
         #endregion
@@ -122,6 +122,28 @@ namespace ProjetoSimples
             canalDeEscrita.Close();
 
             //7º para que tudo ocorra bem devemos marcar nossas classe com "DataAnotation" [Serializable] pois somente assim elas seram serializadas, por padrão todas as classes padrão do c# ja são serializadas
+
+            //-----------------------------------
+            //  Leitura dados de um arquivo binário
+            //-----------------------------------
+
+            //Regras Gerais: 
+            // - Saber o que esta salvo
+            // - Saber a ordem correta na qual foram salvas
+
+            //1ºCriar o canal de leitura 
+            FileStream canalDeleitura = new FileStream(caminhoBinario, FileMode.Open);
+
+            //2º Criando o serializador
+            BinaryFormatter deserializador = new BinaryFormatter();
+            //3ºPassando a mesma ordem para o deserializador fazer o caminho inverso
+            var pessoa = (Pessoa)deserializador.Deserialize(canalDeleitura);
+            var carro = (Carro)deserializador.Deserialize(canalDeleitura);
+            //4ºExibindo o resultado
+            Console.WriteLine(pessoa.ToString());
+            Console.WriteLine(carro.ToString() );
+            //5º Fechar o canal de leitura
+            canalDeleitura.Close();
 
             Console.ReadKey();
 
