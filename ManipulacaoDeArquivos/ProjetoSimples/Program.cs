@@ -6,6 +6,30 @@ namespace ProjetoSimples
 {
     class Program
     {
+        #region Claases criadas para testes de Escrita de um arquivo binário
+        [Serializable]
+        class Pessoa
+        {
+            public int idade;
+            public string nome;
+
+            public override string ToString()
+            {
+                return idade.ToString() + " " + nome;
+            }
+        }
+        [Serializable]
+        class Carro
+        {
+            public string modelo;
+            public string marca;
+
+            public override string ToString()
+            {
+                return modelo +" e, "+marca; 
+            }
+        }
+        #endregion
         static void Main(string[] args)
         {
             //-----------------------------------
@@ -56,7 +80,7 @@ namespace ProjetoSimples
             //---------------------------------------------------
             //  Ler dados de um arquivo de texto - Linha a Linha!
             //---------------------------------------------------
-            
+            /*
             //1º Criar um canal de Leitura
             StreamReader leitor = new StreamReader(caminho);
             //2º Criar um laço para varrer o leitor (Enquanto leitor não chegar ao final do arquivo)
@@ -70,9 +94,35 @@ namespace ProjetoSimples
             }
             //3ºFechar o canal de comunicação 
             leitor.Close();
-            
+            */
 
-            
+            //-----------------------------------
+            //  Escrita de um arquivo binário
+            //-----------------------------------
+
+            //0º Criando um novo caminho 
+            string caminhoBinario = "./dado.som";
+
+            //1º Criando um canal de escrita binaria (o FileStream pode ler e escrever um arquivo binario )
+            FileStream canalDeEscrita = new FileStream(caminhoBinario, FileMode.OpenOrCreate);
+            //Entenda o FileMode.OpenOrCreate
+            //1 - ele tenta abri o arquivo
+            //2 - se o arquivo existi ele abre
+            //3 - senao ele cria e abre
+
+            //3º Criando um serializado
+            BinaryFormatter serializador = new BinaryFormatter();
+            //4º Criando objetos para trabalhar com serializador
+            Pessoa pessoa1 = new Pessoa { nome = "Thiago", idade = 30 };
+            Carro carro1 = new Carro { marca = "Jeep", modelo = "Renegade" };
+            //5ºSalvando em arquivo binario
+            serializador.Serialize(canalDeEscrita, pessoa1);
+            serializador.Serialize(canalDeEscrita, carro1);
+            //6ºFechar o canal de escrita
+            canalDeEscrita.Close();
+
+            //7º para que tudo ocorra bem devemos marcar nossas classe com "DataAnotation" [Serializable] pois somente assim elas seram serializadas, por padrão todas as classes padrão do c# ja são serializadas
+
             Console.ReadKey();
 
 
